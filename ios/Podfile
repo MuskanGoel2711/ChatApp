@@ -14,8 +14,13 @@ if linkage != nil
   use_frameworks! :linkage => linkage.to_sym
 end
 
+# permissions_path = '/Users/user/initial/node_modules/react-native-permissions/ios'
+# pod 'Permission-Camera', :path => "#{permissions_path}/Camera"
+
 target 'initial' do
   config = use_native_modules!
+  use_frameworks! :linkage => :static
+  $RNFirebaseAsStaticFramework = true
 
   use_react_native!(
     :path => config[:reactNativePath],
