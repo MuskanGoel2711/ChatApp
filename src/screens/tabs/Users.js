@@ -8,14 +8,16 @@ import Modal from '../HomeScreen/Modal';
 import CustomInput from '../../components/CustomInput';
 import { useFocusEffect } from '@react-navigation/native';
 import ShimmerUserItem from '../../components/Shimmer';
+import LiveModal from './LiveModal';
 let id = '';
 
-const Users = ({ navigateToChat, navigateToGroups }) => {
+const Users = ({ navigateToChat, navigateToGroups, navigateToSpace }) => {
   const insets = useSafeAreaInsets()
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [isModalVisible, setModalVisible] = useState(false);
+  const [isLiveModalVisible, setLiveModalVisible] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useFocusEffect(
@@ -94,6 +96,16 @@ const Users = ({ navigateToChat, navigateToGroups }) => {
     setModalVisible(false);
   };
 
+  const openLiveModal = () => {
+    Keyboard.dismiss()
+    setLiveModalVisible(true);
+  };
+
+  const closeLiveModal = () => {
+    setLiveModalVisible(false);
+  };
+
+
   const ListEmptyComponent = () => {
     return (
       <View style={styles.emptyView}>
@@ -113,7 +125,7 @@ const Users = ({ navigateToChat, navigateToGroups }) => {
     const initials = generateInitials(item.firstName, item.lastName || '');
     return (
       <View style={{ marginHorizontal: 15, marginBottom: 0, height: 65 }}>
-        <View style={[styles.initialsContainer1, ]}>
+        <View style={[styles.initialsContainer1,]}>
           <Text style={styles.initials}>{initials}</Text>
         </View>
         <Text style={styles.textBottom}>{item.firstName}</Text>
@@ -160,8 +172,8 @@ const Users = ({ navigateToChat, navigateToGroups }) => {
           <Image source={images.homeMore} style={styles.more} />
         </TouchableOpacity>
         <View style={styles.headerIcons}>
-          <TouchableOpacity>
-            <Image source={images.camera} style={styles.camera} />
+          <TouchableOpacity onPress={openLiveModal}>
+            <Image source={images.live} style={styles.live} />
           </TouchableOpacity>
           <TouchableOpacity onPress={openModal}>
             <Image source={images.bell} style={styles.icon} />
@@ -169,10 +181,10 @@ const Users = ({ navigateToChat, navigateToGroups }) => {
         </View>
       </View>
       <Text style={styles.title}>Chats</Text>
-      <View style={{flexDirection: 'row'}}>
+      <View style={{ flexDirection: 'row' }}>
         <TouchableOpacity>
           <View style={styles.initialsContainerStory}>
-            <Text style={[styles.initials,{color: 'black'}]}>
+            <Text style={[styles.initials, { color: 'black' }]}>
               +
             </Text>
           </View>
@@ -210,7 +222,8 @@ const Users = ({ navigateToChat, navigateToGroups }) => {
           ListEmptyComponent={ListEmptyComponent}
           showsVerticalScrollIndicator={false}
         />)}
-      < Modal closeModal={closeModal} navigateToScreen={navigateToScreen} isModalVisible={isModalVisible} />
+      <Modal closeModal={closeModal} navigateToScreen={navigateToScreen} isModalVisible={isModalVisible} />
+      <LiveModal isVisible={isLiveModalVisible} closeModal={closeLiveModal} navigation={navigateToSpace}/>
     </View>
   )
 }
@@ -326,10 +339,10 @@ const styles = StyleSheet.create({
     height: 30,
     tintColor: 'black'
   },
-  camera: {
+  live: {
     width: 25,
     height: 25,
-    tintColor: 'black',
+    // tintColor: 'black',
     marginRight: 20
   },
   icon: {

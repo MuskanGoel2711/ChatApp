@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import CustomImage from '../../components/CustomArrow';
 import { images } from '../../assets';
 import Users from '../tabs/Users';
-import Setting from '../tabs/Setting';
+import Setting from '../tabs/qrCode';
 import CustomStatus from '../../components/CustomStatus';
 import { styles } from './style';
 
@@ -13,7 +13,7 @@ const HomeScreen = ({navigation}) => {
     <SafeAreaView style={styles.container}>
       {selectedTab == 0 ? (<Users navigateToChat={(item,id)=> {
         navigation.navigate('Chat', {data:item, id: id})
-      }} navigateToGroups={()=>navigation.navigate('Groups')}/>) : (<Setting/>)}
+      }} navigateToGroups={()=>navigation.navigate('Groups')} navigateToSpace={()=>navigation.navigate('LiveSpace')}/>) : (<Setting/>)}
       <CustomStatus />
       <View style={styles.bottomView}>
         <CustomImage source={images.user} imageStyle={[styles.image,{

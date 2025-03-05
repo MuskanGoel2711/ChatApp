@@ -38,6 +38,9 @@ const images = {
     homeMore: require(`${fixedPath}/HomeMore.png`),
     audio: require(`${fixedPath}/audio.png`),
     add: require(`${fixedPath}/add.png`),
+    live: require(`${fixedPath}/live.png`),
+    liveSpace: require(`${fixedPath}/liveSpace.png`),
+    liveStream: require(`${fixedPath}/liveStream.png`),
 }
 
 export { images };

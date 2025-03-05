@@ -14,6 +14,8 @@ import ForgotPassword from '../screens/ForgotPassword';
 import VerifyOtp from '../screens/VerifyOtp';
 import Members from '../screens/Members';
 import AddMembers from '../screens/AddMembers';
+import LiveSpaceSetupScreen from '../screens/tabs/LiveSpaceSetUpScreen';
+import LiveSpaceScreen from '../screens/tabs/LiveSpaceScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -35,6 +37,9 @@ const NativeStack = () => {
                 <Stack.Screen name="VerifyOtp" component={VerifyOtp} options={{ gestureEnabled: false }} />
                 <Stack.Screen name="Members" component={Members} options={{ gestureEnabled: false }} />
                 <Stack.Screen name="AddMembers" component={AddMembers} options={{ gestureEnabled: false }} />
+                <Stack.Screen name="LiveSpaceSetUpScreen" component={LiveSpaceSetupScreen} options={{ gestureEnabled: false }} />
+                <Stack.Screen name="LiveSpace" component={LiveSpaceScreen} options={{ gestureEnabled: false }} />
+                
             </Stack.Navigator>
         </NavigationContainer>
     )
